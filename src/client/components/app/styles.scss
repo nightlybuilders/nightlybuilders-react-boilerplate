@@ -1,0 +1,19 @@
+.app {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  width: 500px;
+
+  &__image {
+    width: 150px;
+  }
+
+  &__buttons {
+    margin-top: 10px;
+
+    button:nth-child(odd) {
+      margin-right: 10px;
+    }
+  }
+}

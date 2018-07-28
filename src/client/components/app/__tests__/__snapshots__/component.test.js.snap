@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components/App renders without throwing an error 1`] = `
+<App
+  actions={
+    Object {
+      "onClick": [Function],
+    }
+  }
+  data={
+    Object {
+      "app": Object {
+        "data": Object {
+          "counter": 0,
+        },
+      },
+    }
+  }
+  props={
+    Object {
+      "image": Object {
+        "alt": "",
+        "src": "",
+      },
+      "title": "Hello",
+    }
+  }
+/>
+`;

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components/Button renders without throwing an error 1`] = `
+<Button
+  className=""
+  onClick={[Function]}
+  styles={Object {}}
+>
+  Click Me
+</Button>
+`;

@@ -1,0 +1,123 @@
+/* stylelint-disable property-no-vendor-prefix, selector-no-qualifying-type */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: $base-background-color;
+}
+
+body {
+  background-color: $base-background-color;
+  color: $base-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  font-weight: normal;
+  height: 100%;
+  line-height: $base-line-height;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+figure,
+ol,
+ul {
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 1.6em;
+}
+
+h2 {
+  font-size: 1.4em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.75em;
+}
+
+p {
+  font-family: $base-font-family;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+sup {
+  line-height: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  border: 0;
+  height: auto;
+  width: 100%;
+}
+
+button,
+iframe {
+  border: 0;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+select,
+input {
+  border-radius: 0;
+  font-family: $base-font-family;
+}
+
+input[type='text'],
+input[type='email'] {
+  appearance: none;
+}
+
+textarea {
+  font-family: $base-font-family;
+  vertical-align: top;
+}
+
+address,
+i,
+em {
+  font-style: normal;
+}

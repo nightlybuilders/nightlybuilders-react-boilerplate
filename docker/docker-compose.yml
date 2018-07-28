@@ -1,0 +1,11 @@
+version: "3.5"
+
+services:
+
+  app:
+    build: ../
+    image: nightlybuilders/react-boilerplate:dev
+    # environment:
+      # environment variables
+    ports:
+      - "8000:8000"
