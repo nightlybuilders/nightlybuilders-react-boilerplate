@@ -27,7 +27,7 @@ export const renderFullPage = async ({ currentVersion, html, preloadedState }) =
         </body>
       </html>`
   } catch (err) {
-    console.log(err) // eslint-disable-line
+    console.error(err) // eslint-disable-line
     return boom.isBoom(err) ? err : boom.internal()
   }
 }
