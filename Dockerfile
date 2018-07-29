@@ -3,6 +3,7 @@ RUN mkdir /app/
 COPY package.json /app/
 COPY package-lock.json /app/
 
+RUN mkdir /log/
 WORKDIR /app/
 RUN npm install --quiet
 

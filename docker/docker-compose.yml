@@ -5,7 +5,11 @@ services:
   app:
     build: ../
     image: nightlybuilders/react-boilerplate:dev
-    # environment:
-      # environment variables
+    environment:
+      STATIC_CACHE_EXPIRATION_TIME: 60
+      STATIC_CACHE_PRIVACY: "private"
+      LOG_OPS: "TRUE"
+      BASIC_USER: "john"
+      BASIC_PW: "doe"
     ports:
       - "8000:8000"
