@@ -3,7 +3,7 @@
  * hapijs node-server. They are not necessarely matching the routes in common/routes
  */
 import { resolve } from 'path'
-import * as handler from './handler'
+import { handleRender } from './handler'
 
 export const setupRoutes = server => {
   // monitoring route
@@ -15,7 +15,9 @@ export const setupRoutes = server => {
     },
   })
 
-  // NOTE: this route is basic auth protected, see security.js
+  // NOTE:
+  // - this route is basic auth protected, see security.js
+  // - one could also implement a service-status page, eg: https://github.com/opentable/hapi-service-status/blob/master/lib/service.js
   if (process.env.BASIC_USER && process.env.BASIC_PW) {
     server.route({
       method: 'GET',
@@ -28,8 +30,6 @@ export const setupRoutes = server => {
       },
     })
   }
-
-  // NOTE: one could also implement a service-status page, eg: https://github.com/opentable/hapi-service-status/blob/master/lib/service.js
 
   // serves static files from <rootDir>/dist/static
   server.route({
@@ -52,8 +52,6 @@ export const setupRoutes = server => {
   server.route({
     method: 'GET',
     path: '/{url*}',
-    handler(req) {
-      return handler.handleRender(req)
-    },
+    handler: async (req, res) => handleRender(req, res),
   })
 }

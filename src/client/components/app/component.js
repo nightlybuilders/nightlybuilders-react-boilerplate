@@ -10,6 +10,7 @@ import invoke from 'lodash.invoke'
 // Components
 import { Button } from '../button'
 import { Image } from '../image'
+import { List } from '../list'
 
 // Styling
 const classes = new BemHelper('app')
@@ -33,14 +34,18 @@ export class App extends Component {
         <Image {...classes('image')} {...props.image} />
         <h1 {...classes('headline')}>{get(props, 'title')}</h1>
         <p>Current State with Counter: {get(data, 'app.data.counter')}</p>
-        <div {...classes('buttons')}>
+        <div {...classes('container', 'buttons')}>
           <Button onClick={() => this.onClick(1)}>+1</Button>
           <Button onClick={() => this.onClick(-1)}>-1</Button>
         </div>
-        <div {...classes('buttons')}>
+        <div {...classes('container')}>
           <Button onClick={() => this.onNavigate('example', { hash: '#some-hash' })}>
             Open Example Page
           </Button>
+        </div>
+        <div {...classes('container')}>
+          <h3>Prefetched Data</h3>
+          <List />
         </div>
       </div>
     )

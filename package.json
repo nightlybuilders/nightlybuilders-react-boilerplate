@@ -86,6 +86,7 @@
     "webpack-merge": "4.1.2"
   },
   "dependencies": {
+    "axios": "0.18.0",
     "babel-register": "6.26.0",
     "bcrypt": "2.0.1",
     "bem-classnames": "1.0.7",
@@ -110,8 +111,10 @@
     "react-dom": "16.4.0",
     "react-redux": "5.0.7",
     "react-router": "4.3.1",
+    "react-router-config": "1.0.0-beta.4",
     "react-router-dom": "4.3.1",
     "redux": "4.0.0",
-    "redux-thunk": "2.3.0"
+    "redux-thunk": "2.3.0",
+    "serialize-javascript": "1.5.0"
   }
 }
