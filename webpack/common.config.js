@@ -3,6 +3,7 @@ const path = require('path')
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 const SRC_DIR = path.resolve(__dirname, '..', 'src')
 const BUILD_DIR = path.resolve(__dirname, '..', 'dist')
@@ -71,6 +72,7 @@ module.exports = {
   },
 
   plugins: [
+    new Dotenv(),
     extractSass,
     new CopyWebpackPlugin(
       [

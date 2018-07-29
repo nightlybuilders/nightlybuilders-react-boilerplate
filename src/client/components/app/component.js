@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
@@ -19,6 +20,11 @@ export class App extends Component {
     invoke(actions, 'onClick', change)
   }
 
+  onNavigate = (path, args) => {
+    const { actions = {} } = this.props
+    invoke(actions, 'onNavigate', path, args)
+  }
+
   render() {
     const { data, props } = this.props
 
@@ -30,6 +36,11 @@ export class App extends Component {
         <div {...classes('buttons')}>
           <Button onClick={() => this.onClick(1)}>+1</Button>
           <Button onClick={() => this.onClick(-1)}>-1</Button>
+        </div>
+        <div {...classes('buttons')}>
+          <Button onClick={() => this.onNavigate('example', { hash: '#some-hash' })}>
+            Open Example Page
+          </Button>
         </div>
       </div>
     )

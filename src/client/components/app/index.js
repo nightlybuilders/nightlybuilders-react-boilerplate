@@ -23,6 +23,9 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
       dispatchProps.dispatch(changeCounter(change))
       console.log(`onClick with change: ${change}`) // eslint-disable-line
     },
+    onNavigate: (path, args) => {
+      dispatchProps.dispatch({ type: 'NAVIGATE', path, args })
+    },
   },
   data: {
     ...stateProps,

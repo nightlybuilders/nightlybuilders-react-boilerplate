@@ -61,6 +61,7 @@
     "copy-webpack-plugin": "4.5.1",
     "cross-env": "5.1.6",
     "css-loader": "0.28.11",
+    "dotenv-webpack": "1.5.7",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
     "enzyme-to-json": "3.3.4",
@@ -89,6 +90,7 @@
     "bcrypt": "2.0.1",
     "bem-classnames": "1.0.7",
     "boom": "7.2.0",
+    "connected-react-router": "4.3.0",
     "debug": "3.1.0",
     "dotenv": "6.0.0",
     "good": "8.1.1",
@@ -97,6 +99,7 @@
     "good-squeeze": "5.1.0",
     "hapi": "17.5.2",
     "hapi-auth-basic": "5.0.0",
+    "history": "4.7.2",
     "inert": "5.1.0",
     "lodash.get": "4.4.2",
     "lodash.invoke": "4.5.2",
@@ -106,8 +109,9 @@
     "react-bem-helper": "1.4.1",
     "react-dom": "16.4.0",
     "react-redux": "5.0.7",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
     "redux": "4.0.0",
-    "redux-devtools-extension": "2.13.2",
     "redux-thunk": "2.3.0"
   }
 }

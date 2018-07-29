@@ -1,3 +1,7 @@
+/**
+ * server/routes.js: is responsible for handling and creating the routes of the
+ * hapijs node-server. They are not necessarely matching the routes in common/routes
+ */
 import { resolve } from 'path'
 import * as handler from './handler'
 
@@ -48,8 +52,8 @@ export const setupRoutes = server => {
   server.route({
     method: 'GET',
     path: '/{url*}',
-    handler() {
-      return handler.handleRender()
+    handler(req) {
+      return handler.handleRender(req)
     },
   })
 }

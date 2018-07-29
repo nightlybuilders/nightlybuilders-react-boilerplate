@@ -6,6 +6,7 @@ services:
     build: ../
     image: nightlybuilders/react-boilerplate:dev
     environment:
+      NODE_ENV: "development"
       STATIC_CACHE_EXPIRATION_TIME: 60
       STATIC_CACHE_PRIVACY: "private"
       LOG_OPS: "TRUE"

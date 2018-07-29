@@ -1,22 +1,22 @@
-/* eslint-disable no-underscore-dangle */
+/**
+ * inspired by (Credits)
+ * - https://github.com/cereallarceny/cra-ssr/blob/master/src/index.js
+ */
 import React from 'react'
 import { hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
+
+// store and routes
 import { createReduxStore } from '../common/createStore'
+import { ClientRouter } from '../common/routes'
 
-// Components
-import { AppContainer } from './components/app'
+// Create a store and get back the store itself and its history
+const { store, history } = createReduxStore()
 
-// REDUX
-// Grab the state from a global variable injected into the server-generated HTML
-const preloadedState = window.__PRELOADED_STATE__
-// Allow the passed state to be garbage-collected
-delete window.__PRELOADED_STATE__
-const store = createReduxStore(preloadedState)
-
-hydrate(
+const App = (
   <Provider store={store}>
-    <AppContainer />
-  </Provider>,
-  document.getElementById('_app'),
+    <ClientRouter history={history} />
+  </Provider>
 )
+
+hydrate(App, document.getElementById('_app'))
