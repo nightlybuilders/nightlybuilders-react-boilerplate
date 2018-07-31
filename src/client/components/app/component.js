@@ -44,7 +44,7 @@ export class App extends Component {
           </Button>
         </div>
         <div {...classes('container')}>
-          <h3>Prefetched Data</h3>
+          <h3>Prefetched Posts</h3>
           <List />
         </div>
       </div>

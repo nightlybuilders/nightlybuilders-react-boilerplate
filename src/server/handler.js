@@ -1,3 +1,11 @@
+/**
+ * General Docs
+ * - Example, how to use prefetched data outside of redux: https://gist.github.com/natterstefan/ff1314d5258727c4f52915bc31c80b6a
+ * - SSR Support for react-router 4: https://alligator.io/react/react-router-ssr/
+ * - React Router, Prefetch data based on the current route: https://reacttraining.com/react-router/web/guides/server-rendering/data-loading
+ * - Redux, Inject state SSR: https://redux.js.org/recipes/server-rendering#inject-initial-component-html-and-state
+ *
+ */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
@@ -8,19 +16,18 @@ import { Routes, ServerRouter } from '../common/routes'
 import { createReduxStore } from '../common/createStore'
 import { renderFullPage } from './render-full-page'
 
-import pkg from '../../package.json'
+import { changeCounter } from '../common/actions/app'
+import { receivePosts } from '../common/actions/posts'
 
 require('dotenv').config()
 
 const ts = new Date().getTime() // ts at start time
 
 export const handleRender = async (req, res) => {
-  // cachebuster and redux store
-  const currentVersion = process.env.VERSION || ts || pkg.version
+  // cachebuster
+  const currentVersion = process.env.VERSION || ts
 
-  // Prefetch data based on the current react-router route
-  // - https://reacttraining.com/react-router/web/guides/server-rendering/data-loading
-  // - https://alligator.io/react/react-router-ssr/
+  // preload the data for each matching route defined in ../common/routes
   const matchingRoutes = matchRoutes(Routes, req.path)
   const promises = []
   matchingRoutes.forEach(route => {
@@ -36,14 +43,17 @@ export const handleRender = async (req, res) => {
   result.forEach(data => {
     preloadedData = merge({}, preloadedData, data)
   })
+
+  // this context is then later accessible in the route component (eg. <App />)
   const context = { ...preloadedData }
 
-  // TODO: add prefetched data also (or only) in Redux, because currently
-  // Child components would render the data in the client only (as soon as they
-  // have access to the window.__PRELOADED_DATA__ object)
   const { store } = createReduxStore(req.url)
-  // Grab the initial state from our Redux store
-  // https://redux.js.org/recipes/server-rendering#inject-initial-component-html-and-state
+  // demonstration of how the store could be manipulated/prepared already on the server
+  // eg. based on data which is stored in the cookie
+  store.dispatch(changeCounter(1))
+  store.dispatch(receivePosts(preloadedData))
+
+  // Grab the current state from our Redux store to render it in the html
   const preloadedState = store.getState()
 
   // NOTE:
