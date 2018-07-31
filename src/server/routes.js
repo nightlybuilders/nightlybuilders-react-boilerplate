@@ -34,7 +34,7 @@ export const setupRoutes = server => {
   // serves static files from <rootDir>/dist/static
   server.route({
     method: 'GET',
-    path: '/static/{version}/{params*}', // version is used as a CACHEBUSTER
+    path: '/__static__/{version}/{params*}', // version is used as a CACHEBUSTER
     handler: {
       directory: {
         path: resolve(__dirname, '..', '..', 'dist', 'static'),

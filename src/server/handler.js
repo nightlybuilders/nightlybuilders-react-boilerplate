@@ -16,8 +16,7 @@ import { Routes, ServerRouter } from '../common/routes'
 import { createReduxStore } from '../common/createStore'
 import { renderFullPage } from './render-full-page'
 
-import { changeCounter } from '../common/actions/app'
-import { receivePosts } from '../common/actions/posts'
+import { changeCachebuster } from '../common/actions/app'
 
 require('dotenv').config()
 
@@ -27,19 +26,25 @@ export const handleRender = async (req, res) => {
   // cachebuster
   const currentVersion = process.env.VERSION || ts
 
-  // preload the data for each matching route defined in ../common/routes
+  // prepare the arrays for
+  // - loadData: preload the data for each matching route defined in ../common/routes
+  // - dispatchData: prepare the store for each matching route
   const matchingRoutes = matchRoutes(Routes, req.path)
-  const promises = []
+  const loadDataRequests = []
+  const dispatchDataRequests = []
   matchingRoutes.forEach(route => {
     if (route.route.loadData) {
-      promises.push(route.route.loadData())
+      loadDataRequests.push(route.route.loadData())
+    }
+    if (route.route.dispatchData) {
+      dispatchDataRequests.push(route.route.dispatchData)
     }
   })
 
   // TODO: create promise-all-never-fails utility (because of one request fails,
   // all others would fail/be cancelled as well)
   let preloadedData = {}
-  const result = await Promise.all(promises)
+  const result = await Promise.all(loadDataRequests)
   result.forEach(data => {
     preloadedData = merge({}, preloadedData, data)
   })
@@ -50,8 +55,14 @@ export const handleRender = async (req, res) => {
   const { store } = createReduxStore(req.url)
   // demonstration of how the store could be manipulated/prepared already on the server
   // eg. based on data which is stored in the cookie
-  store.dispatch(changeCounter(1))
-  store.dispatch(receivePosts(preloadedData))
+  store.dispatch(changeCachebuster(currentVersion))
+
+  // the currently prefetched data (defined in loadData on the route), will be
+  // passed along the current store to the route (which can prepare the redux
+  // store)
+  dispatchDataRequests.forEach(dispatchData => {
+    dispatchData(store, preloadedData)
+  })
 
   // Grab the current state from our Redux store to render it in the html
   const preloadedState = store.getState()

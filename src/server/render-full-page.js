@@ -13,7 +13,7 @@ export const renderFullPage = async ({ currentVersion, html, preloadedState, pre
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="stylesheet" href="/static/${currentVersion}/main.styles.css" />
+          <link rel="stylesheet" href="/__static__/${currentVersion}/main.styles.css" />
         </head>
         <body>
           <noscript>
@@ -29,7 +29,7 @@ export const renderFullPage = async ({ currentVersion, html, preloadedState, pre
               currentVersion: ${currentVersion}
             }
           </script>
-          <script src="/static/${currentVersion}/index.bundled.js" defer></script>
+          <script src="/__static__/${currentVersion}/index.bundled.js" defer></script>
         </body>
       </html>`
   } catch (err) {

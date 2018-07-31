@@ -21,7 +21,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
   actions: {
     onClick: change => {
       dispatchProps.dispatch(changeCounter(change))
-      console.log(`onClick with change: ${change}`) // eslint-disable-line
     },
     onNavigate: (path, args) => {
       dispatchProps.dispatch({ type: 'NAVIGATE', path, args })
@@ -34,7 +33,8 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     title: 'Hello App',
     image: {
       alt: 'App',
-      src: 'http://via.placeholder.com/350x150',
+      // src: 'http://via.placeholder.com/350x150', // alternative
+      src: '350x150.png',
     },
     ...ownProps,
   },

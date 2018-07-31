@@ -1,40 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import cx from 'bem-classnames'
+import { connect } from 'react-redux'
+import get from 'lodash.get'
 
-// utils
-import { getImagePath } from '../../utils/get-image-path'
+import { Image as ImageComponent } from './component'
 
-// Styling
-const classes = {
-  name: 'image',
-}
+const mapStateToProps = state => ({
+  cachebuster: get(state, 'app.data.cachebuster'),
+})
 
-// TODO: create ResponsiveImage Version (not working in IE <=11):
-//  - https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
-export const Image = props => (
-  <img
-    alt={props.alt || ''}
-    className={cx(classes, props.className)}
-    onClick={props.onClick}
-    onKeyDown={props.onClick}
-    role="presentation"
-    style={props.styles}
-    src={getImagePath(props.src)}
-  />
-)
+const mapDispatchToProps = () => ({})
 
-Image.displayName = 'Image'
-Image.propTypes = {
-  alt: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-  src: PropTypes.string.isRequired,
-  styles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-}
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+  data: {
+    ...stateProps,
+  },
+  ...ownProps,
+})
 
-Image.defaultProps = {
-  className: '',
-  onClick: () => {},
-  styles: {},
-}
+export const Image = connect(mapStateToProps, mapDispatchToProps, mergeProps)(ImageComponent)

@@ -11,5 +11,5 @@ export const getImagePath = src => {
   // - find proper way to keep cachebuster in sync with client and ssr
   //   eg. on window.__GLOBALS__.currentVersion or in the redux store
   // - find way to fix url in storybook stories
-  return `/static/${cachebuster}/images/${src}`
+  return `/__static__/${cachebuster}/images/${src}`
 }
