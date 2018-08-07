@@ -22,7 +22,7 @@
       "url": "https://github.com/natterstefan"
     }
   ],
-  "license": "MIT",
+  "license": "Apache 2.0",
   "scripts": {
     "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack -p --config webpack/prod.config.js",
     "build:analyse": "cross-env NODE_ENV=production BABEL_ENV=production webpack -p --config webpack/prod.analyse.config.js",
