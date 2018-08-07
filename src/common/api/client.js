@@ -1,9 +1,33 @@
-import axios from 'axios'
+import fetch from 'cross-fetch'
+import assign from 'lodash.assign'
+import dbg from 'debug'
 
-// this is an example for the boilerplate, you have to replace it with your actual
-// api endpoint or api client
-// TODO: more sophisticated api client (eg. more methods, params, options, ...)
-export const apiClient = async resourceType => {
-  const result = await axios.get(`https://jsonplaceholder.typicode.com/${resourceType}`)
-  return { [resourceType]: result.data }
+const debug = dbg('nb:client')
+
+const defaultOptions = {
+  method: 'GET',
+}
+
+export class ApiClient {
+  constructor(basePath) {
+    this.basePath = basePath
+  }
+
+  fetch = async (path = '/', options) => {
+    try {
+      const requestOptions = assign({}, defaultOptions, options)
+      const res = await fetch(`${this.basePath}${path}`, requestOptions)
+
+      if (res.status >= 400) {
+        debug(`Bad response from server ${this.basePath}${path}`, res.status)
+        throw new Error(`Bad response from server ${this.basePath}${path}`, res.status)
+      }
+
+      const result = await res.json()
+      return { [path]: result }
+    } catch (e) {
+      debug(e)
+      return e
+    }
+  }
 }

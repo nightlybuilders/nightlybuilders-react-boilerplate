@@ -9,16 +9,12 @@ clone this repository (yeoman in the making) and start developing your idea.
 This boilerplate provides a varity of out-of-the-box features for both development
 and production:
 
-* :tada: Hello World example react app for easy understanding of the
-  boilerplate's file and feature handling structure
+* :tada: React boilerplate app with server-side rendering, data prefetching and more
 * :twisted_rightwards_arrows: Easy state management with [Redux](https://redux.js.org/)
+* :boom: GQL support with [Apollo](https://www.apollographql.com/docs/react/)
+  integration for both server and client
 * :rocket: Webpack, Storybook, ESLint, Stylelint and Prettier and lots of other
   awesome technologies used for development and production builds
-
-Work in Progress:
-
-* :boom: GQL support with [Apollo](https://www.apollographql.com/docs/react/)
-  integration for both server and client (WIP)
 
 ## Installation
 
@@ -35,6 +31,12 @@ cd nightlybuilders-react-boilerplate
 npm install
 npm start
 ```
+
+## Debug Mode
+
+To enable logging in your browser (or on the server), one have to start the debug
+mode by running `localStorage.setItem('debug', '\*')` in your browser's console,
+or setting `DEBUG=*` in ´.env`.
 
 ## LICENCE
 

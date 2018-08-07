@@ -8,10 +8,18 @@ import { setupSecurity } from './security'
 
 require('dotenv').config()
 
+const requiredEnvVars = ['API_HOSTS']
+requiredEnvVars.forEach(prop => {
+  if (typeof process.env[prop] === 'undefined') {
+    console.error(`Environment variable ${prop} undefined`) // eslint-disable-line no-console
+    process.exit(1)
+  }
+})
+
 // create and start the server
 const createAndStartServer = async () => {
   try {
-    // Create a server with a host and port
+    // create a server with a host and port
     const server = Hapi.server({
       host: process.env.HOST,
       port: process.env.PORT || 8000,

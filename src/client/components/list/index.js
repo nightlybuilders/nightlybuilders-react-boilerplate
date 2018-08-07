@@ -4,21 +4,27 @@
  */
 import { connect } from 'react-redux'
 import get from 'lodash.get'
+import omit from 'lodash.omit'
+import pick from 'lodash.pick'
 
 import { List as ListComponent } from './component'
 
 const mapStateToProps = state => ({
-  posts: get(state, 'posts', {}),
+  data: get(state, 'posts.data.posts', {}), // TODO: remove and get only from props
 })
 
 const mapDispatchToProps = () => ({})
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => ({
-  data: {
-    ...stateProps,
+  actions: {
+    getKey: d => d.id,
+    getValue: d => d.title,
+    ...pick(ownProps, ['getKey', 'getValue']),
   },
-  props: {
-    ...ownProps,
+  ...stateProps,
+  ...ownProps,
+  otherProps: {
+    ...omit(ownProps, ['data', 'getKey', 'getValue']),
   },
 })
 

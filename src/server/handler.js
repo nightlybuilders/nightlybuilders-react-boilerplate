@@ -7,15 +7,18 @@
  *
  */
 import React from 'react'
+import get from 'lodash.get'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { matchRoutes } from 'react-router-config'
-import merge from 'lodash.merge'
+import { ApolloProvider, getDataFromTree } from 'react-apollo'
 
 import { Routes, ServerRouter } from '../common/routes'
 import { createReduxStore } from '../common/createStore'
+import { getApolloClient } from '../common/api/apollo'
+import { services } from '../common/services'
+import { ApiClient } from '../common/api/client'
 import { renderFullPage } from './render-full-page'
-
 import { changeCachebuster } from '../common/actions/app'
 
 require('dotenv').config()
@@ -23,59 +26,51 @@ require('dotenv').config()
 const ts = new Date().getTime() // ts at start time
 
 export const handleRender = async (req, res) => {
-  // cachebuster
+  // set (install) a common services, which can be later used in eg. the <App />
+  services.set('api', new ApiClient(process.env.API_HOSTS))
+
+  // prepare some globals, like eg. cachebuster
   const currentVersion = process.env.VERSION || ts
 
-  // prepare the arrays for
-  // - loadData: preload the data for each matching route defined in ../common/routes
-  // - dispatchData: prepare the store for each matching route
+  // NOTE:
+  // demonstration of how the store could be manipulated/prepared already on the server
+  // eg. based on data which is stored in the cookie
+  // Example: https://github.com/cereallarceny/cra-ssr/blob/master/server/loader.js#L59-L65
+  const { store } = createReduxStore(req.url)
+  store.dispatch(changeCachebuster(currentVersion))
+
+  // A container can contain a loadData property, which is used to prefetch data
+  // if the route matches and the container is rendered
   const matchingRoutes = matchRoutes(Routes, req.path)
   const loadDataRequests = []
-  const dispatchDataRequests = []
   matchingRoutes.forEach(route => {
-    if (route.route.loadData) {
-      loadDataRequests.push(route.route.loadData())
-    }
-    if (route.route.dispatchData) {
-      dispatchDataRequests.push(route.route.dispatchData)
-    }
+    const loadData = get(route, 'route.component.loadData', () => Promise.resolve())
+    const location = get(route, 'match') || {}
+    loadDataRequests.push(loadData(store, location))
   })
 
   // TODO: create promise-all-never-fails utility (because of one request fails,
   // all others would fail/be cancelled as well)
-  let preloadedData = {}
-  const result = await Promise.all(loadDataRequests)
-  result.forEach(data => {
-    preloadedData = merge({}, preloadedData, data)
-  })
+  await Promise.all(loadDataRequests)
 
   // this context is then later accessible in the route component (eg. <App />)
-  const context = { ...preloadedData }
-
-  const { store } = createReduxStore(req.url)
-  // demonstration of how the store could be manipulated/prepared already on the server
-  // eg. based on data which is stored in the cookie
-  store.dispatch(changeCachebuster(currentVersion))
-
-  // the currently prefetched data (defined in loadData on the route), will be
-  // passed along the current store to the route (which can prepare the redux
-  // store)
-  dispatchDataRequests.forEach(dispatchData => {
-    dispatchData(store, preloadedData)
-  })
+  const context = {}
 
   // Grab the current state from our Redux store to render it in the html
   const preloadedState = store.getState()
 
-  // NOTE:
-  // one could dispatch an action here now (eg. for instance prepare a state, based
-  // on the cookies of the user or something else), before renderToString.
-  // Example: https://github.com/cereallarceny/cra-ssr/blob/master/server/loader.js#L59-L65
-  const html = renderToString(
-    <Provider store={store}>
-      <ServerRouter req={req} context={context} />
-    </Provider>,
+  const client = getApolloClient(process.env.GQL_HOSTS)
+  const App = (
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <ServerRouter req={req} context={context} />
+      </Provider>
+    </ApolloProvider>
   )
+
+  await getDataFromTree(App)
+  const html = renderToString(App)
+  const preloadedApollo = client.extract()
 
   // redirect based on the status or when context.url is set (eg. <Redirect />
   // component is used)
@@ -90,5 +85,5 @@ export const handleRender = async (req, res) => {
   }
 
   // Send the rendered page back to the client
-  return renderFullPage({ currentVersion, html, preloadedState, preloadedData })
+  return renderFullPage({ currentVersion, html, preloadedState, preloadedApollo })
 }

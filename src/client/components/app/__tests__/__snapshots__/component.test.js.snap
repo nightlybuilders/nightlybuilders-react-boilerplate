@@ -7,22 +7,23 @@ exports[`Components/App renders without throwing an error 1`] = `
       "onClick": [Function],
     }
   }
-  data={
-    Object {
-      "app": Object {
-        "data": Object {
-          "counter": 0,
-        },
-      },
-    }
-  }
-  props={
+  data={Object {}}
+  otherProps={
     Object {
       "image": Object {
         "alt": "",
         "src": "",
       },
       "title": "Hello",
+    }
+  }
+  store={
+    Object {
+      "app": Object {
+        "data": Object {
+          "counter": 0,
+        },
+      },
     }
   }
 />

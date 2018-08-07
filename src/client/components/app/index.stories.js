@@ -21,12 +21,19 @@ class Wrapper extends React.Component {
     this.setState({ counter: this.state.counter + value })
   }
 
+  onNavigate = (path, args) => {
+    action('onNavigate')(path, args)
+  }
+
   render() {
     return (
       <App
-        actions={{ onClick: this.onClick }}
-        data={{ app: { data: { counter: this.state.counter } } }}
-        props={{
+        actions={{
+          onClick: this.onClick,
+          onNavigate: this.onNavigate,
+        }}
+        store={{ app: { data: { cachebuster: 123456789, counter: this.state.counter } } }}
+        otherProps={{
           image: {
             alt: 'App',
             src: 'http://via.placeholder.com/350x150',
