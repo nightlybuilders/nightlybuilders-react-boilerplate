@@ -19,6 +19,7 @@ import { getApolloClient } from '../common/api/apollo'
 import { services } from '../common/services'
 import { ApiClient } from '../common/api/client'
 import { changeCachebuster } from '../common/actions/app'
+import { promiseAll } from '../common/utils/promise-all'
 
 import { renderFullPage } from './render-full-page'
 
@@ -49,10 +50,7 @@ export const handleRender = async (req, res) => {
     const location = get(route, 'match') || {}
     loadDataRequests.push(loadData(store, location))
   })
-
-  // TODO: create promise-all-never-fails utility (because of one request fails,
-  // all others would fail/be cancelled as well)
-  await Promise.all(loadDataRequests)
+  await promiseAll(loadDataRequests)
 
   // this context is then later accessible in the route component (eg. <App />)
   const context = {}
