@@ -20,16 +20,17 @@ and production:
 
 ### Requirements
 
+* yarn 1.9.4 or higher
+* node 8.11.1 or higher
 * npm 5.6 or higher
-* node 8.11.1 or highter
 
 ### Usage
 
 ```
-git clone git@github.com:nightlybuilders/react-boilerplate.git
+git clone git@github.com:nightlybuilders/nightlybuilders-react-boilerplate.git
 cd nightlybuilders-react-boilerplate
-npm install
-npm start
+yarn // also works with npm i
+yarn start // also works with npm start
 ```
 
 ## Debug Mode
