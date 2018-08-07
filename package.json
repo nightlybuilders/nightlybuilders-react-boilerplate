@@ -1,7 +1,15 @@
 {
   "name": "nightlybuilders-react-boilerplate",
   "version": "0.0.1",
-  "description": "",
+  "description": "This boilerplate kick starts your next React based web application.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nightlybuilders/nightlybuilders-react-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nightlybuilders/nightlybuilders-react-boilerplate/issues"
+  },
+  "homepage": "https://github.com/nightlybuilders/nightlybuilders-react-boilerplate#readme",
   "main": "src/server/index.js",
   "author": "Stefan Natter <stefan@natter.at>",
   "contributors": [
