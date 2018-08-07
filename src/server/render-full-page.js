@@ -31,8 +31,8 @@ export const renderFullPage = async ({ currentVersion, html, preloadedState, pre
             window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
             window.__APOLLO_STATE__ = ${serialize(preloadedApollo)}
             window.__GLOBALS__ = ${serialize({
-              currentVersion,
               apiUrl: process.env.API_HOSTS,
+              currentVersion,
               gqlUrl: process.env.GQL_HOSTS,
             })}
           </script>

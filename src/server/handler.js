@@ -18,8 +18,9 @@ import { createReduxStore } from '../common/createStore'
 import { getApolloClient } from '../common/api/apollo'
 import { services } from '../common/services'
 import { ApiClient } from '../common/api/client'
-import { renderFullPage } from './render-full-page'
 import { changeCachebuster } from '../common/actions/app'
+
+import { renderFullPage } from './render-full-page'
 
 require('dotenv').config()
 
@@ -85,5 +86,5 @@ export const handleRender = async (req, res) => {
   }
 
   // Send the rendered page back to the client
-  return renderFullPage({ currentVersion, html, preloadedState, preloadedApollo })
+  return renderFullPage({ currentVersion, html, preloadedApollo, preloadedState })
 }

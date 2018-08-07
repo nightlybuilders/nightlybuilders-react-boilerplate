@@ -53,7 +53,7 @@
     ]
   },
   "devDependencies": {
-    "@natterstefan/eslint-config-ns": "git+https://github.com/natterstefan/eslint-config-ns.git#master",
+    "@natterstefan/eslint-config-ns": "git+https://github.com/natterstefan/eslint-config-ns.git#8470efb8bf1eac323eaa93b9d969a2c4ea6e38be",
     "@storybook/addon-actions": "4.0.0-alpha.14",
     "@storybook/addon-options": "4.0.0-alpha.14",
     "@storybook/react": "4.0.0-alpha.14",

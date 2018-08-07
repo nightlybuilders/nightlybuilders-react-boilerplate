@@ -14,10 +14,11 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory, createMemoryHistory } from 'history'
 import thunkMiddleware from 'redux-thunk'
-import historyMiddleware from './middleware/history'
 
-import rootReducer from './reducers'
 import { isServer } from '../common/utils/is-server'
+
+import historyMiddleware from './middleware/history'
+import rootReducer from './reducers'
 
 export const createReduxStore = (url = '/') => {
   // create a history depending on the environment
@@ -51,7 +52,7 @@ export const createReduxStore = (url = '/') => {
   const store = createStore(connectRouter(history)(rootReducer), initialState, composedEnhancers)
 
   return {
-    store,
     history,
+    store,
   }
 }

@@ -13,7 +13,7 @@ const validate = async (request, username, password) => {
   const isValid = await bcrypt.compare(password, user.password)
   const credentials = { name: user.username }
 
-  return { isValid, credentials }
+  return { credentials, isValid }
 }
 
 export const setupSecurity = async server => {
@@ -24,8 +24,8 @@ export const setupSecurity = async server => {
   bcrypt.hash(process.env.BASIC_PW, saltRounds, (err, hash) => {
     users = {
       [process.env.BASIC_USER]: {
-        username: process.env.BASIC_USER,
         password: hash, // 'secret'
+        username: process.env.BASIC_USER,
       },
     }
   })

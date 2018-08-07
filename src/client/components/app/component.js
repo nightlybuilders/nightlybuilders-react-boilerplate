@@ -1,14 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
+import BemHelper from 'react-bem-helper'
 import PropTypes from 'prop-types'
 import dbg from 'debug'
-
-// Utils
 import get from 'lodash.get'
-import BemHelper from 'react-bem-helper'
 import invoke from 'lodash.invoke'
 
-// Components
 import { Button } from '../button'
 import { Image } from '../image'
 import { List } from '../list'

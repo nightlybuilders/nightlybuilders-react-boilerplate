@@ -8,17 +8,17 @@ if (process.env.LOG_OPS === 'TRUE') {
   obsLogger = {
     opsLogger: [
       {
+        args: [{ ops: '*' }],
         module: 'good-squeeze',
         name: 'Squeeze',
-        args: [{ ops: '*' }],
       },
       {
         module: 'good-squeeze',
         name: 'SafeJson',
       },
       {
-        module: 'good-file',
         args: ['./logs/hapi/ops.log'],
+        module: 'good-file',
       },
     ],
   }
@@ -32,9 +32,9 @@ export const options = {
   reporters: {
     consoleLogger: [
       {
+        args: [{ error: '*', log: '*' }],
         module: 'good-squeeze',
         name: 'Squeeze',
-        args: [{ log: '*', error: '*' }],
       },
       {
         module: 'good-console',
@@ -43,17 +43,17 @@ export const options = {
     ],
     fileLogger: [
       {
+        args: [{ error: '*' }],
         module: 'good-squeeze',
         name: 'Squeeze',
-        args: [{ error: '*' }],
       },
       {
         module: 'good-squeeze',
         name: 'SafeJson',
       },
       {
-        module: 'good-file',
         args: ['./logs/hapi/error.log'],
+        module: 'good-file',
       },
     ],
     ...obsLogger,
@@ -62,7 +62,7 @@ export const options = {
 
 export const setupLogging = async server => {
   await server.register({
-    plugin: require('good'), // eslint-disable-line global-require
     options,
+    plugin: require('good'), // eslint-disable-line global-require
   })
 }
