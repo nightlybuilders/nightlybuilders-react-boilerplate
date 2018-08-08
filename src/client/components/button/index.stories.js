@@ -4,9 +4,9 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import withReadme from 'storybook-readme/with-readme'
 
-// Components
-import { Button } from './'
 import componentReadme from './README.md'
+
+import { Button } from './'
 
 storiesOf('Components/Button', module)
   .addDecorator(withReadme(componentReadme))

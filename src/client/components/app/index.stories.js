@@ -32,7 +32,10 @@ class Wrapper extends React.Component {
           onClick: this.onClick,
           onNavigate: this.onNavigate,
         }}
-        store={{ app: { data: { cachebuster: 123456789, counter: this.state.counter } } }}
+        store={{
+          app: { data: { cachebuster: 123456789, counter: this.state.counter } },
+          posts: [{ id: 1, title: 'some title' }, { id: 2, title: 'some other title' }],
+        }}
         otherProps={{
           image: {
             alt: 'App',

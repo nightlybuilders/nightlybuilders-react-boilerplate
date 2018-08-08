@@ -122,6 +122,7 @@
     "lodash.assign": "4.2.0",
     "lodash.get": "4.4.2",
     "lodash.invoke": "4.5.2",
+    "lodash.map": "4.6.0",
     "lodash.merge": "4.6.1",
     "lodash.omit": "4.5.0",
     "lodash.pick": "4.4.0",

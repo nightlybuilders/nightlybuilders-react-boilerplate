@@ -15,6 +15,7 @@ const debug = dbg('nb:AppContainer')
 
 const mapStateToProps = state => ({
   app: get(state, 'app', {}),
+  posts: get(state, 'posts.data.posts', []),
 })
 
 const mapDispatchToProps = dispatch => ({ dispatch })

@@ -15,15 +15,15 @@ export const Button = props => (
 
 Button.displayName = 'Button'
 Button.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   className: PropTypes.string,
   onClick: PropTypes.func,
-  children: PropTypes.node,
   styles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 }
 
 Button.defaultProps = {
+  children: [],
   className: '',
   onClick: () => {},
-  children: [],
   styles: {},
 }

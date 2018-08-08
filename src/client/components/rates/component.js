@@ -3,8 +3,9 @@ import React from 'react'
 import get from 'lodash.get'
 import PropTypes from 'prop-types'
 import BemHelper from 'react-bem-helper'
+import map from 'lodash.map'
 
-import { List } from '../list'
+import { List, ListItem } from '../list'
 
 // Styling
 const classes = new BemHelper('rates')
@@ -14,7 +15,11 @@ export const Rates = props => {
   return (
     <div {...classes()}>
       <h3>Prefetched Rates (Apollo)</h3>
-      <List data={get(data, 'rates')} getKey={d => d.currency} getValue={d => d.currency} />
+      <List>
+        {map(get(data, 'rates') || [], rate => (
+          <ListItem key={rate.currency}>{rate.currency}</ListItem>
+        ))}
+      </List>
     </div>
   )
 }

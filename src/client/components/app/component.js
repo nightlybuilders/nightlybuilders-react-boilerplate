@@ -5,11 +5,12 @@ import PropTypes from 'prop-types'
 import dbg from 'debug'
 import get from 'lodash.get'
 import invoke from 'lodash.invoke'
+import map from 'lodash.map'
 
 import { Button } from '../button'
 import { Image } from '../image'
 import { Meta } from '../meta'
-import { List } from '../list'
+import { List, ListItem } from '../list'
 import { Rates } from '../rates'
 
 // Styling
@@ -56,7 +57,11 @@ export class App extends Component {
         </div>
         <div {...classes('container')}>
           <h3>Prefetched Posts (Redux)</h3>
-          <List />
+          <List>
+            {map(get(store, 'posts') || [], post => (
+              <ListItem key={post.id}>{post.title}</ListItem>
+            ))}
+          </List>
         </div>
         <div {...classes('container')}>
           <Rates />

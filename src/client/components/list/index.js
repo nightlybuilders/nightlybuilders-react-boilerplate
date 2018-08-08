@@ -1,31 +1,57 @@
-/**
- * Example Component, to illustrate how to use (see ./index.js) server-side
- * prefetched data, which is already stored in the redux browser
- */
-import { connect } from 'react-redux'
-import get from 'lodash.get'
-import omit from 'lodash.omit'
-import pick from 'lodash.pick'
+/* eslint-disable no-underscore-dangle */
+import React from 'react'
+import PropTypes from 'prop-types'
+import cx from 'bem-classnames'
 
-import { List as ListComponent } from './component'
+// Styling
+const classes = {
+  name: 'list',
+}
 
-const mapStateToProps = state => ({
-  data: get(state, 'posts.data.posts', {}), // TODO: remove and get only from props
-})
+const propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+}
+const defaultProps = {
+  children: null,
+}
 
-const mapDispatchToProps = () => ({})
+export const List = ({ className, children }) => (
+  <ul className={cx(classes, className)}>{children}</ul>
+)
+export const ListItem = ({ className, children, onClick, onKeyPress, styles }) => (
+  <li
+    className={cx(classes, className)}
+    style={styles}
+    onClick={onClick}
+    onKeyPress={onKeyPress}
+    role="presentation"
+  >
+    {children}
+  </li>
+)
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => ({
-  actions: {
-    getKey: d => d.id,
-    getValue: d => d.title,
-    ...pick(ownProps, ['getKey', 'getValue']),
-  },
-  ...stateProps,
-  ...ownProps,
-  otherProps: {
-    ...omit(ownProps, ['data', 'getKey', 'getValue']),
-  },
-})
+ListItem.displayName = 'ListItem'
+ListItem.propTypes = {
+  ...propTypes,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  onKeyPress: PropTypes.func,
+  styles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+}
+ListItem.defaultProps = {
+  ...defaultProps,
+  className: '',
+  onClick: () => {},
+  onKeyPress: () => {},
+  style: {},
+}
 
-export const List = connect(mapStateToProps, mapDispatchToProps, mergeProps)(ListComponent)
+List.displayName = 'List'
+List.propTypes = {
+  ...propTypes,
+  className: PropTypes.string,
+}
+List.defaultProps = {
+  ...defaultProps,
+  className: '',
+}
