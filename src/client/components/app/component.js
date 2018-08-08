@@ -8,6 +8,7 @@ import invoke from 'lodash.invoke'
 
 import { Button } from '../button'
 import { Image } from '../image'
+import { Meta } from '../meta'
 import { List } from '../list'
 import { Rates } from '../rates'
 
@@ -40,6 +41,7 @@ export class App extends Component {
 
     return (
       <div {...classes()}>
+        <Meta title="Hello World" description="Hello Description" />
         <Image {...classes('image')} {...otherProps.image} />
         <h1 {...classes('headline')}>{get(otherProps, 'title')}</h1>
         <p>Current State with Counter: {get(store, 'app.data.counter')}</p>

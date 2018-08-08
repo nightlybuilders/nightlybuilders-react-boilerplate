@@ -17,16 +17,16 @@ export const List = props => {
 
 List.displayName = 'List'
 List.propTypes = {
-  data: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   actions: PropTypes.shape({
-    getValue: PropTypes.func,
     getKey: PropTypes.func,
+    getValue: PropTypes.func,
   }),
+  data: PropTypes.array, // eslint-disable-line react/forbid-prop-types
 }
 List.defaultProps = {
-  data: [],
   actions: {
-    getValue: d => d.id,
     getKey: d => d,
+    getValue: d => d.id,
   },
+  data: [],
 }

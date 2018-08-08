@@ -8,6 +8,7 @@ import dbg from 'debug'
 import { services } from '../../../common/services'
 import { receivePosts } from '../../../common/actions/posts'
 import { changeCounter } from '../../../common/actions/app'
+
 import { App } from './component'
 
 const debug = dbg('nb:AppContainer')
@@ -32,7 +33,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
       dispatchProps.dispatch(changeCounter(change))
     },
     onNavigate: (path, args) => {
-      dispatchProps.dispatch({ type: 'NAVIGATE', path, args })
+      dispatchProps.dispatch({ args, path, type: 'NAVIGATE' })
     },
   },
   data: {
@@ -40,11 +41,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     ...ownProps.data,
   },
   otherProps: {
-    title: 'Hello App',
     image: {
       alt: 'App',
       src: '350x150.png', // from the static folder or from another domain
     },
+    title: 'Hello App',
     ...omit(ownProps, ['data']),
   },
   store: {

@@ -12,6 +12,7 @@ import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { matchRoutes } from 'react-router-config'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
+import { Helmet } from 'react-helmet'
 
 import { Routes, ServerRouter } from '../common/routes'
 import { createReduxStore } from '../common/createStore'
@@ -71,6 +72,10 @@ export const handleRender = async (req, res) => {
   const html = renderToString(App)
   const preloadedApollo = client.extract()
 
+  // Because the component keeps track of mounted instances, you have to make
+  // sure to call renderStatic on server, or you'll get a memory leak.
+  const helmet = Helmet.renderStatic()
+
   // redirect based on the status or when context.url is set (eg. <Redirect />
   // component is used)
   // Docs:
@@ -84,5 +89,5 @@ export const handleRender = async (req, res) => {
   }
 
   // Send the rendered page back to the client
-  return renderFullPage({ currentVersion, html, preloadedApollo, preloadedState })
+  return renderFullPage({ currentVersion, helmet, html, preloadedApollo, preloadedState })
 }

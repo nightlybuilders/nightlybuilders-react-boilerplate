@@ -14,16 +14,25 @@ require('dotenv').config()
  * WARNING: See the following for security issues around embedding JSON in HTML:
  * http://redux.js.org/recipes/ServerRendering.html#security-considerations
  */
-export const renderFullPage = async ({ currentVersion, html, preloadedState, preloadedApollo }) => {
+export const renderFullPage = async ({
+  currentVersion,
+  helmet,
+  html,
+  preloadedState,
+  preloadedApollo,
+}) => {
   try {
     return `<!DOCTYPE html>
-      <html lang="de">
+      <html lang="de" ${helmet.htmlAttributes.toString()}>
         <head>
+          ${helmet.title.toString()}
+          ${helmet.meta.toString()}
+          ${helmet.link.toString()}
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <link rel="stylesheet" href="/__static__/${currentVersion}/main.styles.css" />
         </head>
-        <body>
+        <body ${helmet.bodyAttributes.toString()}>
           <noscript>
             Please activate Javascript to use this page.
           </noscript>
