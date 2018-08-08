@@ -29,21 +29,12 @@ module.exports = {
     ...styles('main'),
   },
 
-  output: {
-    filename: '[name]',
-    path: path.join(__dirname, '..', 'dist', 'static'),
-  },
-
-  resolve: {
-    extensions: ['.js', '.css', '.scss'],
-  },
-
   module: {
     rules: [
       {
-        test: /\.js$/,
-        include: SRC_DIR,
         exclude: /node_modules/,
+        include: SRC_DIR,
+        test: /\.js$/,
         use: {
           loader: 'babel-loader',
         },
@@ -69,6 +60,11 @@ module.exports = {
         }),
       },
     ],
+  },
+
+  output: {
+    filename: '[name]',
+    path: path.join(__dirname, '..', 'dist', 'static'),
   },
 
   plugins: [
@@ -98,4 +94,8 @@ module.exports = {
       },
     ),
   ],
+
+  resolve: {
+    extensions: ['.js', '.css', '.scss'],
+  },
 }

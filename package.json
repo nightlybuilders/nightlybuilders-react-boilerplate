@@ -30,7 +30,7 @@
     "build:storybook": "build-storybook -o dist/storybook",
     "format": "eslint --fix ./src/**/*.js",
     "format:scss": "stylelint --fix ./src/**/*.scss",
-    "lint": "eslint ./src/**/*.js",
+    "lint": "eslint ./**/*.js",
     "lint:scss": "stylelint ./src/**/*.scss",
     "precommit": "lint-staged",
     "start": "npm run build && node .",

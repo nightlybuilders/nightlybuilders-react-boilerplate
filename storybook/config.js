@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { configure } from '@storybook/react'
 import { setOptions } from '@storybook/addon-options'
+
 import { addReduxDecorator } from './redux'
 import { addApolloDecorator } from './gql'
 

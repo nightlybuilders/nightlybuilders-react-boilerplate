@@ -7,8 +7,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { onError } from 'apollo-link-error'
 import { ApolloLink } from 'apollo-link'
-
 import dbg from 'debug'
+
 import 'cross-fetch/polyfill' // solves: https://stackoverflow.com/q/50688998/1238150
 import { isServer } from '../utils/is-server'
 
@@ -21,6 +21,7 @@ const createApollo = uri => {
       ? window.__APOLLO_STATE__ // eslint-disable-line
       : undefined
 
+  // ApolloClient documentation: https://www.apollographql.com/docs/react/api/apollo-client.html#apollo-client
   const config = {
     cache: new InMemoryCache().restore(initialState || {}),
     connectToDevTools: !isServer,
@@ -33,14 +34,14 @@ const createApollo = uri => {
         if (networkError) debug(`[Network error]: ${networkError}`)
       }),
       new HttpLink({
-        uri,
         opts: {
           credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
         },
+        uri,
       }),
     ]),
-    ssrMode: isServer, // Disables forceFetch on the server (so queries are only run once)
     ssrForceFetchDelay: 100,
+    ssrMode: isServer, // Disables forceFetch on the server (so queries are only run once)
   }
 
   return new ApolloClient(config)

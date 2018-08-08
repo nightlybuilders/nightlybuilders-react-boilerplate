@@ -7,6 +7,7 @@ require('dotenv').config()
  * index.html as well):
  *  - https://alligator.io/react/react-router-ssr/ (see server/index.js)
  *  - or https://github.com/cereallarceny/cra-ssr/blob/2144cc4c50195aaac11f207a672d4b0fab4f1035/server/loader.js#L45
+ *  - or w/ templating (eg. nunjucks): https://github.com/hapijs/vision & https://www.npmjs.com/package/nunjucks-hapi
  *
  * TODO: evaluate if index.html (with re-writing/injecting code) would be better solution
  *

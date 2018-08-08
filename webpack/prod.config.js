@@ -1,7 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const merge = require('webpack-merge')
-
-// PROD Plugins
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const common = require('./common.config.js')
@@ -19,8 +17,8 @@ module.exports = merge(common, {
         sourceMap: false,
         uglifyOptions: {
           compress: {
-            drop_console: true,
             dead_code: true,
+            drop_console: true,
           },
           output: {
             beautify: false,

@@ -2,8 +2,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.mjs$/,
         include: /node_modules/,
+        test: /\.mjs$/,
         type: 'javascript/auto',
       },
       {
@@ -26,8 +26,8 @@ module.exports = {
       },
       {
         // fonts would be available at /fonts/ then in the stories
-        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file-loader?name=fonts/[name].[ext]',
+        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
       },
       {
         test: /\.(png|jpg|gif|svg)$/,

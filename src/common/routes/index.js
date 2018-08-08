@@ -11,20 +11,20 @@ const NotFound = () => <span>404 - Nothing here</span>
 
 /**
  * inspired by (Credits):
- * - loadData solution and renderRoutes: https://alligator.io/react/react-router-ssr/
+ * - renderRoutes solution: https://alligator.io/react/react-router-ssr/
  *
  * Attention: because we use renderRoute, 'render' is not available in the Routes
  * configuration!
  */
 export const Routes = [
   {
+    component: AppContainer,
     exact: true,
     path: '/',
-    component: AppContainer,
   },
   {
-    path: '/example',
     component: Example,
+    path: '/example',
   },
   {
     component: NotFound,
