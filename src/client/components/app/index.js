@@ -62,7 +62,7 @@ AppWrapper.loadData = async store => {
   try {
     const api = services.get('api')
     if (api.fetch) {
-      const preloadedData = await api.fetch('posts')
+      const preloadedData = await api.fetch('/posts')
       store.dispatch(receivePosts(preloadedData))
     }
 

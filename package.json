@@ -61,6 +61,7 @@
     "babel-cli": "6.26.0",
     "babel-core": "6.26.3",
     "babel-loader": "7.1.4",
+    "babel-plugin-graphql-tag": "1.6.0",
     "babel-plugin-react-intl": "2.4.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.13",
     "babel-polyfill": "6.26.0",

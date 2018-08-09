@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import BemHelper from 'react-bem-helper'
 import PropTypes from 'prop-types'
-import dbg from 'debug'
 import get from 'lodash.get'
 import invoke from 'lodash.invoke'
 import map from 'lodash.map'
@@ -16,17 +15,7 @@ import { Rates } from '../rates'
 // Styling
 const classes = new BemHelper('app')
 
-const debug = dbg('nb:App')
-
 export class App extends Component {
-  componentDidMount = () => {
-    // Illustration: how to refresh data from Apollo
-    setTimeout(() => {
-      debug('refreshData')
-      invoke(this.props, 'data.refetch')
-    }, 10000)
-  }
-
   onClick = change => {
     const { actions = {} } = this.props
     invoke(actions, 'onClick', change)
@@ -64,7 +53,7 @@ export class App extends Component {
           </List>
         </div>
         <div {...classes('container')}>
-          <Rates />
+          <Rates currency="USD" />
         </div>
       </div>
     )

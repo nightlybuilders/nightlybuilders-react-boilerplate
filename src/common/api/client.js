@@ -24,7 +24,7 @@ export class ApiClient {
       }
 
       const result = await res.json()
-      return { [path]: result }
+      return { [path.slice(1)]: result }
     } catch (e) {
       debug(e)
       return e

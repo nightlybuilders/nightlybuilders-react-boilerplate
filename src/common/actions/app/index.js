@@ -3,8 +3,8 @@ const actions = {
   CHANGE_COUNTER: 'CHANGE_COUNTER',
 }
 
-const changeCounter = data => ({ type: actions.CHANGE_COUNTER, data })
+const changeCounter = data => ({ data, type: actions.CHANGE_COUNTER })
 
-const changeCachebuster = data => ({ type: actions.CHANGE_CACHEBUSTER, data })
+const changeCachebuster = data => ({ data, type: actions.CHANGE_CACHEBUSTER })
 
 export { actions, changeCounter, changeCachebuster }
