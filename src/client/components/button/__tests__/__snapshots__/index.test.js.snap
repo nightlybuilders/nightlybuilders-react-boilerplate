@@ -2,9 +2,13 @@
 
 exports[`Components/Button renders without throwing an error 1`] = `
 <Button
-  className=""
+  className="some-class"
   onClick={[Function]}
-  styles={Object {}}
+  styles={
+    Object {
+      "padding": 20,
+    }
+  }
 >
   Click Me
 </Button>

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component/Meta should render without throwing an error 1`] = `
+<HelmetWrapper
+  defer={true}
+  encodeSpecialCharacters={true}
+>
+  <title>
+    Test Title
+  </title>
+  <meta
+    content="Test Description"
+    name="description"
+  />
+</HelmetWrapper>
+`;

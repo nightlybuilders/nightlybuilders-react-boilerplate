@@ -8,13 +8,6 @@ const classes = {
   name: 'list',
 }
 
-const propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-}
-const defaultProps = {
-  children: null,
-}
-
 export const List = ({ className, children }) => (
   <ul className={cx(classes, className)}>{children}</ul>
 )
@@ -29,6 +22,13 @@ export const ListItem = ({ className, children, onClick, onKeyPress, styles }) =
     {children}
   </li>
 )
+
+const propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+}
+const defaultProps = {
+  children: null,
+}
 
 ListItem.displayName = 'ListItem'
 ListItem.propTypes = {

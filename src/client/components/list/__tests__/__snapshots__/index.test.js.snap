@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component/List should render without throwing an error 1`] = `
+<ul
+  className="list"
+>
+  <ListItem
+    className=""
+    key="1"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    style={Object {}}
+  >
+    some item
+  </ListItem>
+  <ListItem
+    className=""
+    key="2"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    style={Object {}}
+  >
+    some other item
+  </ListItem>
+</ul>
+`;

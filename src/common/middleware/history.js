@@ -11,9 +11,10 @@ export default store => next => action => {
         return next(action)
       }
 
+      const preparedPath = path.charAt(0) === '/' ? path : `/${path}`
       store.dispatch(
         push({
-          pathname: path,
+          pathname: preparedPath,
           ...args,
         }),
       )

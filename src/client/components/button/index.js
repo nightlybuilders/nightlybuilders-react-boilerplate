@@ -8,7 +8,7 @@ const classes = {
 }
 
 export const Button = props => (
-  <button className={cx(classes, props.className)} style={props.styles} onClick={props.onClick}>
+  <button className={cx(classes, props.className)} styles={props.styles} onClick={props.onClick}>
     {props.children}
   </button>
 )

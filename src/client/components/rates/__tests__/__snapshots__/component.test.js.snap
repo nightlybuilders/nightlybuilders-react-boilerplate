@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component/Rates should render without throwing an error 1`] = `
+<div
+  className="rates"
+>
+  <h3>
+    Prefetched Rates (Apollo)
+  </h3>
+  <List
+    className=""
+  >
+    <ListItem
+      className=""
+      key="EUR"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      style={Object {}}
+    >
+      EUR
+    </ListItem>
+    <ListItem
+      className=""
+      key="USD"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      style={Object {}}
+    >
+      USD
+    </ListItem>
+  </List>
+</div>
+`;
