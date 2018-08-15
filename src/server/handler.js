@@ -47,7 +47,9 @@ export const handleRender = async (req, res) => {
   const matchingRoutes = matchRoutes(Routes, req.path)
   const loadDataRequests = []
   matchingRoutes.forEach(route => {
-    const loadData = get(route, 'route.component.loadData', () => Promise.resolve())
+    const loadData = get(route, 'route.component.loadData', () =>
+      Promise.resolve(),
+    )
     const location = get(route, 'match') || {}
     loadDataRequests.push(loadData(store, location))
   })
@@ -89,5 +91,11 @@ export const handleRender = async (req, res) => {
   }
 
   // Send the rendered page back to the client
-  return renderFullPage({ currentVersion, helmet, html, preloadedApollo, preloadedState })
+  return renderFullPage({
+    currentVersion,
+    helmet,
+    html,
+    preloadedApollo,
+    preloadedState,
+  })
 }

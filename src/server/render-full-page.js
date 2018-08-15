@@ -38,7 +38,9 @@ export const renderFullPage = async ({
           </noscript>
           <div id="_app">${html}</div>
           <script>
-            window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+            window.__PRELOADED_STATE__ = ${JSON.stringify(
+              preloadedState,
+            ).replace(/</g, '\\u003c')}
             window.__APOLLO_STATE__ = ${serialize(preloadedApollo)}
             window.__GLOBALS__ = ${serialize({
               apiUrl: process.env.API_HOSTS,

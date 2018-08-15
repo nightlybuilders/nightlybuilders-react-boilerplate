@@ -1,1 +1,7 @@
+.github
+dist
+docker
+logs
+node_modules
 package.json
+tmp

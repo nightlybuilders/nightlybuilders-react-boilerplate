@@ -15,8 +15,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory, createMemoryHistory } from 'history'
 import thunkMiddleware from 'redux-thunk'
 
-import { isServer } from '../common/utils/is-server'
-
+import { isServer } from './utils/is-server'
 import historyMiddleware from './middleware/history'
 import rootReducer from './reducers'
 
@@ -38,8 +37,15 @@ export const createReduxStore = (url = '/') => {
   }
 
   // prepare the middlewares
-  const middleware = [thunkMiddleware, routerMiddleware(history), historyMiddleware]
-  const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers)
+  const middleware = [
+    thunkMiddleware,
+    routerMiddleware(history),
+    historyMiddleware,
+  ]
+  const composedEnhancers = compose(
+    applyMiddleware(...middleware),
+    ...enhancers,
+  )
 
   // grab the state from a global variable injected into the server-generated HTML
   const initialState = !isServer ? window.__PRELOADED_STATE__ : {}
@@ -49,7 +55,11 @@ export const createReduxStore = (url = '/') => {
   }
 
   // and finally create the store
-  const store = createStore(connectRouter(history)(rootReducer), initialState, composedEnhancers)
+  const store = createStore(
+    connectRouter(history)(rootReducer),
+    initialState,
+    composedEnhancers,
+  )
 
   return {
     history,

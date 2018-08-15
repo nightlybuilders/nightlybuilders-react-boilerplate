@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import { Meta } from '../'
+import { Meta } from '..'
 
 const ChildMeta = () => <meta charSet="utf-8" />
 
