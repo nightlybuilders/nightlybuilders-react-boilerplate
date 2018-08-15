@@ -7,20 +7,6 @@ module.exports = {
         type: 'javascript/auto',
       },
       {
-        // currently not working properly with webpack 4 and storybook 4 (alpha)
-        // see: https://github.com/tuchk4/storybook-readme/issues/79
-        test: /\.md$/,
-        use: [
-          {
-            loader: 'html-loader',
-          },
-          {
-            loader: 'markdown-loader',
-            options: {},
-          },
-        ],
-      },
-      {
         test: /\.(css|scss)$/,
         use: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'],
       },
