@@ -14,10 +14,15 @@ function loadStories() {
 }
 
 setOptions({
+  downPanelInRight: true,
+  goFullScreen: false,
   name: 'nightlybuilders react-boilerplate',
   showAddonPanel: true,
+  showDownPanel: true,
+  showLeftPanel: true,
+  showSearchBox: false,
   sortStoriesByKind: true,
-  url: '#',
+  url: 'https://github.com/nightlybuilders/nightlybuilders-react-boilerplate',
 })
 
 // add additional decorators
