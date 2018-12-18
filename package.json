@@ -1,15 +1,19 @@
 {
   "name": "nightlybuilders-react-boilerplate",
   "version": "0.0.1",
-  "description": "This boilerplate kick starts your next React based web application.",
+  "description":
+    "This boilerplate kick starts your next React based web application.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nightlybuilders/nightlybuilders-react-boilerplate.git"
+    "url":
+      "git+https://github.com/nightlybuilders/nightlybuilders-react-boilerplate.git"
   },
   "bugs": {
-    "url": "https://github.com/nightlybuilders/nightlybuilders-react-boilerplate/issues"
+    "url":
+      "https://github.com/nightlybuilders/nightlybuilders-react-boilerplate/issues"
   },
-  "homepage": "https://github.com/nightlybuilders/nightlybuilders-react-boilerplate#readme",
+  "homepage":
+    "https://github.com/nightlybuilders/nightlybuilders-react-boilerplate#readme",
   "main": "src/server/index.js",
   "author": "Stefan Natter <stefan@natter.at>",
   "contributors": [
@@ -24,36 +28,38 @@
   ],
   "license": "Apache 2.0",
   "scripts": {
-    "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack -p --config webpack/prod.config.js",
-    "build:analyse": "cross-env NODE_ENV=production BABEL_ENV=production webpack -p --config webpack/prod.analyse.config.js",
-    "build:dev": "webpack --config webpack/dev.config.js",
+    "build":
+      "rimraf cross-env NODE_ENV=production BABEL_ENV=production webpack -p --config webpack/prod.config.js",
+    "build:analyse":
+      "npm run prebuild && cross-env NODE_ENV=production BABEL_ENV=production webpack -p --config webpack/prod.analyse.config.js",
+    "build:dev": "npm run prebuild && webpack --config webpack/dev.config.js",
     "build:storybook": "build-storybook -o dist/storybook",
     "format": "eslint --fix ./src/**/*.js",
     "format:scss": "stylelint --fix ./src/**/*.scss",
     "lint": "eslint ./**/*.js",
     "lint:scss": "stylelint ./src/**/*.scss",
+    "prebuild": "rimraf dist",
     "precommit": "lint-staged",
     "start": "npm run build && node .",
     "storybook": "start-storybook -p 9001 -c storybook",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "watch:client": "webpack --config webpack/dev.config.js --watch",
+    "watch:client":
+      "npm run prebuild && webpack --config webpack/dev.config.js --watch",
     "watch:server": "nodemon ./src/server",
     "watch:test": "jest --watch"
   },
   "lint-staged": {
-    "*.scss": [
-      "npm run format:scss",
-      "git add"
-    ],
+    "*.scss": ["npm run format:scss", "git update-index --again"],
     "*.js": [
       "npm run format",
-      "git add",
+      "git update-index --again",
       "jest --findRelatedTests"
     ]
   },
   "devDependencies": {
-    "@natterstefan/eslint-config-ns": "git+https://github.com/natterstefan/eslint-config-ns.git#8470efb8bf1eac323eaa93b9d969a2c4ea6e38be",
+    "@natterstefan/eslint-config-ns":
+      "git+https://github.com/natterstefan/eslint-config-ns.git#8470efb8bf1eac323eaa93b9d969a2c4ea6e38be",
     "@storybook/addon-actions": "4.0.0-alpha.14",
     "@storybook/addon-options": "4.0.0-alpha.14",
     "@storybook/react": "4.0.0-alpha.14",
@@ -136,6 +142,7 @@
     "react-router-dom": "4.3.1",
     "redux": "4.0.0",
     "redux-thunk": "2.3.0",
+    "rimraf": "2.6.2",
     "serialize-javascript": "1.5.0"
   }
 }

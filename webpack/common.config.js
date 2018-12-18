@@ -74,8 +74,14 @@ module.exports = {
       [
         {
           context: './src/static',
-          from: `${path.resolve(__dirname, '..', 'src', 'static', 'images')}/**/*.+(png|jpg|gif)`,
-          to: `${BUILD_DIR}/static/images`,
+          from: `${path.resolve(
+            __dirname,
+            '..',
+            'src',
+            'static',
+            'images',
+          )}/**/*.+(png|jpg|gif|svg)`,
+          to: `${BUILD_DIR}/static`,
         },
         {
           context: './src/static',
