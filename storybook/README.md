@@ -6,9 +6,10 @@ in an isolated (and mocked) environment to other developers and your clients.
 ## Start Storybook
 
 Running storybook not only requires to exectute `npm run storybook` but also
-`npm run start:server`. If you want to enter the watch mode of the
-server run `npm run watch:server` as well. We recommend to run storybook
-together with the server in watch mode.
+`npm run start:server` (or `npm run watch:server`). If you change anything in
+`src/static` (eg. adding new images) you must run `npm run build:dev` once again.
+Because only then the new files are copied into the `dist` folder (used for
+delivering static files from the node server).
 
 ## Static files
 
