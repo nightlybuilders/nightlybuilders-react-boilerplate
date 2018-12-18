@@ -39,7 +39,7 @@ class Wrapper extends React.Component {
         otherProps={{
           image: {
             alt: 'App',
-            src: 'http://via.placeholder.com/350x150',
+            src: '350x150.png', // http://via.placeholder.com/350x150
           },
           title: 'Hello Storybook',
         }}

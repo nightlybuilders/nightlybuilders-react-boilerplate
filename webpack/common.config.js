@@ -92,7 +92,7 @@ module.exports = {
             'static',
             'fonts',
           )}/**/*.+(ttf|otf|eot|svg|woff|woff2)`,
-          to: `${BUILD_DIR}/static/fonts`,
+          to: `${BUILD_DIR}/static`,
         },
       ],
       {
