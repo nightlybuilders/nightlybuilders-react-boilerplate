@@ -29,7 +29,7 @@
   "license": "Apache 2.0",
   "scripts": {
     "build":
-      "rimraf cross-env NODE_ENV=production BABEL_ENV=production webpack -p --config webpack/prod.config.js",
+      "cross-env NODE_ENV=production BABEL_ENV=production webpack -p --config webpack/prod.config.js",
     "build:analyse":
       "npm run prebuild && cross-env NODE_ENV=production BABEL_ENV=production webpack -p --config webpack/prod.analyse.config.js",
     "build:dev": "npm run prebuild && webpack --config webpack/dev.config.js",
